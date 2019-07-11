@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appareil.component.css']
 })
 export class AppareilComponent implements OnInit {
-
+  appareilName = 'Machine à laver';
+  appareilStatus = 'Actif';
   constructor() { }
 
   ngOnInit() {
+  }
+  getStatus() {
+    return this.appareilStatus;
   }
 
 }
