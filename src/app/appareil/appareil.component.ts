@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppareilComponent implements OnInit {
   appareilName = 'Machine à laver';
-  appareilStatus = 'Actif';
+  appareilStatus = 'éteint';
   constructor() { }
 
   ngOnInit() {
@@ -16,4 +16,5 @@ export class AppareilComponent implements OnInit {
     return this.appareilStatus;
   }
 
-}
+  }
+

@@ -8,7 +8,8 @@
         <app-appareil></app-appareil>
       </ul>
       <button class="btn btn-success" 
-              [disabled]="!isAuth">Tout allumer</button>
+              [disabled]="!isAuth"
+              (click)="onAllumer()">Tout allumer</button>
     </div>
   </div>
 </div>
