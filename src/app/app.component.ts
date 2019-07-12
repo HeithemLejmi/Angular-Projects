@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  appareilOne = 'PC';
+  appareilTwo = 'TV';
+  appareilThree = 'Machine à Laver';
+
   isAuth = false;
   constructor() {
   setTimeout(
