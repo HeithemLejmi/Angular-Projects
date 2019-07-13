@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,7 +21,7 @@ export class AppComponent {
   ];
 
   isAuth = false;
-  constructor() {
+  constructor(private appareilService : AppareilService) {
     setTimeout(
       () => {
         this.isAuth = true;
