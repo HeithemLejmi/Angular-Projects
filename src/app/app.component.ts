@@ -10,7 +10,12 @@ export class AppComponent {
   appareilOne = 'PC';
   appareilTwo = 'TV';
   appareilThree = 'Machine à Laver';
-
+  lastUpdate = new Promise((resolve, reject) => {
+    const date = new Date();
+    setTimeout(() => {
+    resolve(date);
+    }, 2000);
+  });
   isAuth = false;
   constructor() {
   setTimeout(
