@@ -14,5 +14,16 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
     this.authStatus = this.authService.isAuth;
   }
-
+onSignIn() {
+  this.authService.signIn().then(
+    () => {
+      console.log('la connexion réussie !');
+      this.authStatus = this.authService.isAuth;
+    }
+  );
+}
+onSignOut() {
+  this.authService.signOut();
+  this.authStatus = this.authService.isAuth;
+}
 }
