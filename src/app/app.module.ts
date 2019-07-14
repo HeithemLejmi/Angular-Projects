@@ -9,7 +9,8 @@ import { MonPremierComponent } from './mon-premier/mon-premier.component';
 import { AppareilComponent } from './appareil/appareil.component';
 
 // Services
-import { AppareilService } from './service/appareil.service';
+import { AppareilService } from './services/appareil.service';
+import { AuthService } from './services/auth.service';
 
 // Routers
 import {Routes, RouterModule} from '@angular/router';
@@ -32,7 +33,10 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AppareilService],
+  providers: [
+    AppareilService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

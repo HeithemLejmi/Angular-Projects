@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 // Services
-import { AppareilService } from '../service/appareil.service';
+import { AppareilService } from '../services/appareil.service';
 @Component({
   selector: 'app-appareil-view',
   templateUrl: './appareil-view.component.html',
   styleUrls: ['./appareil-view.component.css']
 })
 export class AppareilViewComponent implements OnInit {
-  appareils: any[];
   isAuth = false;
+  appareils: any[];
   lastUpdate = new Promise((resolve, reject) => {
     const date = new Date();
     setTimeout(

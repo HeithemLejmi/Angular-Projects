@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 // Services
-import { AppareilService } from '../service/appareil.service';
+import { AppareilService } from '../services/appareil.service';
 @Component({
   selector: 'app-appareil',
   templateUrl: './appareil.component.html',
