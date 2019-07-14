@@ -9,6 +9,14 @@ import { AppareilService } from './service/appareil.service';
 export class AppComponent implements OnInit {
   appareils: any[];
   isAuth = false;
+  lastUpdate = new Promise((resolve, reject) => {
+    const date = new Date();
+    setTimeout(
+      () => {
+        resolve(date);
+      }, 2000
+    );
+  });
   constructor(private appareilService: AppareilService) {
     setTimeout(
       () => {
