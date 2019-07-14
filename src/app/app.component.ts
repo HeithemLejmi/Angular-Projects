@@ -20,7 +20,14 @@ export class AppComponent {
       status: 'éteint'
     }
   ];
-
+  lastUpdate = new Promise((resolve, reject) => {
+    const date = new Date();
+    setTimeout(
+      () => {
+        resolve(date);
+      }, 2000
+    );
+  });
   isAuth = false;
   constructor() {
     setTimeout(
