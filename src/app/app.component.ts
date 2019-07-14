@@ -9,7 +9,7 @@ import { AppareilService } from './service/appareil.service';
 export class AppComponent implements OnInit {
   appareils: any[];
   isAuth = false;
-  constructor(private appareilService : AppareilService) {
+  constructor(private appareilService: AppareilService) {
     setTimeout(
       () => {
         this.isAuth = true;
@@ -20,6 +20,13 @@ export class AppComponent implements OnInit {
     this.appareils = this.appareilService.appareils;
 }
   onAllumer() {
-    console.log('Tout Allumer');
+    this.appareilService.switchOnAll();
   }
+  onEteindre() {
+    if (confirm('Etes-vous sûr de vouloir éteindre tous vos appareils ?')) {
+      this.appareilService.switchOffAll();
+    } else {
+      return null;
+    }
+}
 }
