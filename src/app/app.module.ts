@@ -15,6 +15,7 @@ import { AuthService } from './services/auth.service';
 // Routers
 import {Routes, RouterModule} from '@angular/router';
 
+// declare and create the routes inside this const array
 const appRoutes: Routes = [
 {path: 'appareils', component: AppareilViewComponent},
 {path: 'auth', component: AuthComponent},
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    // integrate the routes into the application by importing the RouterModule and executing its method forRoot()
+    RouterModule.forRoot(appRoutes) // forRoot method looks into the const array "appRoutes" to charge/see every one of the routes recoded there 
   ],
   providers: [
     AppareilService,
