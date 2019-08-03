@@ -14,10 +14,13 @@ import { AuthService } from './services/auth.service';
 
 // Routers
 import {Routes, RouterModule} from '@angular/router';
+import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
 
 // declare and create the routes inside this const array
 const appRoutes: Routes = [
 {path: 'appareils', component: AppareilViewComponent},
+{path: 'appareils/:id', component: SingleAppareilComponent}, // l'utilisation des deux-points (:) avant un fragment de route déclare ce fragment comme étant un paramètre : 
+                                                            // tous les chemins de type  appareils/*  seront renvoyés vers  SingleAppareilComponent
 {path: 'auth', component: AuthComponent},
 {path: '', component: AppareilViewComponent}
 ];
@@ -27,7 +30,8 @@ const appRoutes: Routes = [
     MonPremierComponent,
     AppareilComponent,
     AuthComponent,
-    AppareilViewComponent
+    AppareilViewComponent,
+    SingleAppareilComponent
   ],
   imports: [
     BrowserModule,
