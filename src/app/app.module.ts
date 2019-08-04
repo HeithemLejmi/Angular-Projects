@@ -23,7 +23,11 @@ const appRoutes: Routes = [
 {path: 'appareils/:id', component: SingleAppareilComponent}, // l'utilisation des deux-points (:) avant un fragment de route déclare ce fragment comme étant un paramètre : 
                                                             // tous les chemins de type  appareils/*  seront renvoyés vers  SingleAppareilComponent
 {path: 'auth', component: AuthComponent},
-{path: '', component: AppareilViewComponent}
+{path: '', component: AppareilViewComponent},
+{ path: 'not-found', component: FourOhFourComponent },
+{ path: '**', redirectTo: 'not-found' } //Quand vous entrez un chemin dans la barre de navigation qui 
+                                        // n'est pas directement pris en charge par votre application, 
+                                        // vous êtes redirigé vers  /not-found  et donc le component 404.
 ];
 @NgModule({
   declarations: [
