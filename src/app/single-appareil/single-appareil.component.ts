@@ -7,8 +7,8 @@ import { AppareilService } from '../services/appareil.service';
   styleUrls: ['./single-appareil.component.css']
 })
 export class SingleAppareilComponent implements OnInit {
-name: string = 'Appareil';
-status: string = 'Statut'; 
+name: string;
+status: string; 
   constructor(private appareilService: AppareilService, private route: ActivatedRoute) { }
 
   ngOnInit() {
