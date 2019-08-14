@@ -1,14 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-// Services
+import { Component, OnDestroy, OnInit } from '@angular/core';
+//Services
 import { AppareilService } from '../services/appareil.service';
+//Subscription
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-appareil-view',
   templateUrl: './appareil-view.component.html',
   styleUrls: ['./appareil-view.component.css']
 })
-export class AppareilViewComponent implements OnInit {
-  isAuth = false;
+export class AppareilViewComponent implements OnInit, OnDestroy {
+
   appareils: any[];
+  appareilSubscription: Subscription;
+
   lastUpdate = new Promise((resolve, reject) => {
     const date = new Date();
     setTimeout(
@@ -17,25 +22,32 @@ export class AppareilViewComponent implements OnInit {
       }, 2000
     );
   });
-  constructor(private appareilService: AppareilService) {
-    setTimeout(
-      () => {
-        this.isAuth = true;
-      }, 4000
-    );
-  }
+
+  constructor(private appareilService: AppareilService) { }
+
   ngOnInit() {
-    this.appareils = this.appareilService.appareils;
-}
+    this.appareilSubscription = this.appareilService.appareilsSubject.subscribe(
+      (appareils: any[]) => {
+        this.appareils = appareils;
+      }
+    );
+    this.appareilService.emitAppareilSubject();
+  }
+
   onAllumer() {
     this.appareilService.switchOnAll();
   }
+
   onEteindre() {
-    if (confirm('Etes-vous sûr de vouloir éteindre tous vos appareils ?')) {
+    if(confirm('Etes-vous sûr de vouloir éteindre tous vos appareils ?')) {
       this.appareilService.switchOffAll();
     } else {
       return null;
     }
-}
+  }
+
+  ngOnDestroy() {
+    this.appareilSubscription.unsubscribe();
+  }
 
 }

@@ -1,16 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 // cet import sert à rendre disponible le type Observable, 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 // importer la méthode  interval(): qui crée un Observable qui émet un chiffre croissant à intervalles réguliers 
 // ...et qui prend le nombre de millisecondes souhaité pour l'intervalle comme argument.
-import 'rxjs/add/observable/interval';
-
-import {Subscription} from 'rxjs/Subscription';
+import { interval } from 'rxjs';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -22,10 +21,9 @@ counterSubscription: Subscription;
 
   ngOnInit() {
     
-    const counter = Observable.interval(1000);
+    const counter = interval(1000);
     // Maintenant on a un Observable, il faut l'observer !
     // => Pour cela on utilise un "subscribe", pour se soucrire à l'observable counter
-
 //Maintenant vous allez souscrire à l'Observable et créer trois fonctions I, II, III:
     
     this.counterSubscription = counter.subscribe(
@@ -43,11 +41,10 @@ counterSubscription: Subscription;
         console.log('Observable complete!');
       }
     );
-    
+}
     ngOnDestroy() {
     // La fonction  unsubscribe()  détruit la souscription 
     //...et empêche les comportements inattendus liés aux Observables infinis,
     this.counterSubscription.unsubscribe();
-  }
   }
 }
