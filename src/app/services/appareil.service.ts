@@ -1,5 +1,10 @@
+import { Subject } from 'rxjs';
+
 export class AppareilService {
-    appareils = [
+  
+  appareilsSubject = new Subject<any[]>();
+  
+  private appareils = [
         {
           id: 1,
           name: 'PC',
@@ -16,28 +21,41 @@ export class AppareilService {
           status: 'éteint'
         }
       ];
-      switchOnAll() {
-      for (let appareil of this.appareils) {
-        appareil.status = 'allumé';
+
+emitAppareilSubject() {
+    this.appareilsSubject.next(this.appareils.slice());
+  }
+
+getAppareilById(id: number) {
+  const appareil = this.appareils.find(
+      (s) => {
+        return s.id === id;
       }
-      }
-      switchOffAll() {
-        for (let appareil of this.appareils) {
-          appareil.status = 'éteint';
-        }
-      }
-      switchOnOne(i: number) {
-        this.appareils[i].status = 'allumé';
-      }
-      switchOffOne(i: number) {
-        this.appareils[i].status = 'éteint';
-      }
-      getAppareilById(id: number) {
-        const appareil = this.appareils.find(
-                        (s) => {
-                                return s.id === id;
-                                }
-                         );
-      return appareil;
-      }
+    );
+  return appareil;
+}
+
+switchOnAll() {
+    for(let appareil of this.appareils) {
+      appareil.status = 'allumé';
+    }
+    this.emitAppareilSubject();
+}
+
+switchOffAll() {
+    for(let appareil of this.appareils) {
+      appareil.status = 'éteint';
+      this.emitAppareilSubject();
+    }
+}
+
+switchOnOne(i: number) {
+    this.appareils[i].status = 'allumé';
+    this.emitAppareilSubject();
+}
+
+switchOffOne(i: number) {
+    this.appareils[i].status = 'éteint';
+    this.emitAppareilSubject();
+}
 }
