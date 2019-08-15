@@ -26,6 +26,9 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
   constructor(private appareilService: AppareilService) { }
 
   ngOnInit() {
+    // souscrire au Subject "appareilSubscription" de AppareilService depuis  AppareilViewComponent  
+    // pour recevoir les données émises, émettre les premières données,
+    //  et implémenter  OnDestroy  pour détruire la souscription (Voir en bas de ce code)
     this.appareilSubscription = this.appareilService.appareilsSubject.subscribe(
       (appareils: any[]) => {
         this.appareils = appareils;
