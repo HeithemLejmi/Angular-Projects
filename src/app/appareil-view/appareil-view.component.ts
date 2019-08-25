@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-//Services
+// Services
 import { AppareilService } from '../services/appareil.service';
-//Subscription
+// Subscription
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./appareil-view.component.css']
 })
 export class AppareilViewComponent implements OnInit, OnDestroy {
-
+  isAuth = false;
   appareils: any[];
   appareilSubscription: Subscription;
 
@@ -23,10 +23,16 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
     );
   });
 
-  constructor(private appareilService: AppareilService) { }
+  constructor(private appareilService: AppareilService) {
+    setTimeout(
+      () => {
+        this.isAuth = true;
+      }, 4000
+    );
+  }
 
   ngOnInit() {
-    // souscrire au Subject "appareilSubscription" de AppareilService depuis  AppareilViewComponent  
+    // souscrire au Subject "appareilSubscription" de AppareilService depuis  AppareilViewComponent
     // pour recevoir les données émises, émettre les premières données,
     //  et implémenter  OnDestroy  pour détruire la souscription (Voir en bas de ce code)
     this.appareilSubscription = this.appareilService.appareilsSubject.subscribe(
@@ -42,7 +48,7 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
   }
 
   onEteindre() {
-    if(confirm('Etes-vous sûr de vouloir éteindre tous vos appareils ?')) {
+    if (confirm('Etes-vous sûr de vouloir éteindre tous vos appareils ?')) {
       this.appareilService.switchOffAll();
     } else {
       return null;
@@ -52,5 +58,4 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.appareilSubscription.unsubscribe();
   }
-
 }
