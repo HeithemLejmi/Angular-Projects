@@ -21,14 +21,17 @@ import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
 // declare and create the routes inside this const array
 const appRoutes: Routes = [
 {path: 'appareils', canActivate: [AuthGuard], component: AppareilViewComponent},
-{path: 'appareils/:id', canActivate: [AuthGuard], component: SingleAppareilComponent}, // l'utilisation des deux-points (:) avant un fragment de route déclare ce fragment comme étant un paramètre : 
-                                                            // tous les chemins de type  appareils/*  seront renvoyés vers  SingleAppareilComponent
+{path: 'appareils/:id', canActivate: [AuthGuard], component: SingleAppareilComponent},
+// l'utilisation des deux-points (:) avant un fragment de route déclare ce fragment comme étant un paramètre :
+// tous les chemins de type  appareils/*  seront renvoyés vers  SingleAppareilComponent
 {path: 'auth', component: AuthComponent},
+{ path: 'edit', canActivate: [AuthGuard], component: EditAppareilComponent },
 {path: '', component: AppareilViewComponent},
 { path: 'not-found', component: FourOhFourComponent },
-{ path: '**', redirectTo: 'not-found' } //Quand vous entrez un chemin dans la barre de navigation qui 
-                                        // n'est pas directement pris en charge par votre application, 
-                                        // vous êtes redirigé vers  /not-found  et donc le component 404.
+{ path: '**', redirectTo: 'not-found' }
+// Quand vous entrez un chemin dans la barre de navigation qui
+// n'est pas directement pris en charge par votre application,
+// vous êtes redirigé vers  /not-found  et donc le component 404.
 ];
 @NgModule({
   declarations: [
